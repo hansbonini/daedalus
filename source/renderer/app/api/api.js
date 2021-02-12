@@ -1002,14 +1002,13 @@ export default class AdaApi {
       const totalDeposits = deposits.length
         ? BigNumber.sum.apply(null, deposits)
         : new BigNumber(0);
-      const feeWithDeposits = totalInputs.minus(totalOutputs);
-      const fee = feeWithDeposits.minus(totalDeposits);
+      const fee = totalInputs.minus(totalOutputs);
 
       const extendedResponse = {
         inputs: inputsData,
         outputs: outputsData,
         certificates: certificatesData,
-        feeWithDeposits: feeWithDeposits.dividedBy(LOVELACES_PER_ADA),
+        deposits: totalDeposits.dividedBy(LOVELACES_PER_ADA),
         fee: fee.dividedBy(LOVELACES_PER_ADA),
       };
       logger.debug('AdaApi::selectCoins success', { extendedResponse });

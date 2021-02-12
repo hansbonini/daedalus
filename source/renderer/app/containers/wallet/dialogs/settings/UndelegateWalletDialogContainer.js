@@ -67,10 +67,10 @@ export default class UndelegateWalletDialogContainer extends Component<
         poolId,
         delegationAction: DELEGATION_ACTIONS.QUIT,
       });
-      const { feeWithDeposits, fee } = coinsSelection;
+      const { deposits, fee } = coinsSelection;
       stakePoolQuitFee = {
         fee,
-        deposit: feeWithDeposits.minus(fee),
+        deposit: deposits,
       };
       hardwareWallets.initiateTransaction({ walletId: this.selectedWalletId });
     } else {
